@@ -12,6 +12,21 @@ module.exports = {
     });
   },
 
+  getOne: function(req, res, next) {
+    var id = req.params.id;
+    if (!id) return next(new Error('No event id specified.'));
+    Event.findOne({_id: id}, function(err, event) {
+      if (err) {
+        console.log(err);
+        return next(new Error('There was a problem getting that event.'));
+      }
+      if (!event) {
+        return next(new Error('That event does not exist.'));
+      }
+      return res.json(event);
+    });
+  },
+
   create: function(req, res, next) {
     var data = req.body;
     var newEvent = new Event({
