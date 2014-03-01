@@ -38,12 +38,15 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
         console.log('Received Event: ' + id);
+        
+    },
+    initializeMap: function(id) {
+        var mapOptions = {
+            zoom: 8,
+            center: new google.maps.LatLng(-34.397, 150.644)
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
     }
 };
