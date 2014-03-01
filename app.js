@@ -3,13 +3,20 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var routes = require('./routes');
-var user = require('./routes/user');
-var http = require('http');
-var path = require('path');
+var express = require('express'),
+    http = require('http'),
+    path = require('path'),
+    mongoose = require('mongoose');
+
 
 var app = express();
+
+// Connect to mongodb
+mongoUrl = 'mongodb://pickup-user:treehouse@ds033449.mongolab.com:33449/pickup';
+mongoose.connect(mongoUrl, function(error) {
+  if (error) throw error;
+  console.log('Mongoose connection successful');
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
