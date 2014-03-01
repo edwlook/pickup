@@ -1,0 +1,9 @@
+2014-03-01 14:02:46.495 HelloCordova[4238:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-01 14:02:46.526 HelloCordova[4238:80b] Unlimited access to network resources
+2014-03-01 14:02:46.952 HelloCordova[4238:80b] Resetting plugins due to page load.
+2014-03-01 14:02:47.306 HelloCordova[4238:80b] Finished load of: file:///Users/e/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/A938FD06-CD5F-4DC4-A10B-D5DE9856F0B3/HelloCordova.app/www/index.html
+2014-03-01 14:06:01.469 HelloCordova[4594:80b] Multi-tasking -> Device: YES, App: YES
+2014-03-01 14:06:01.479 HelloCordova[4594:80b] Unlimited access to network resources
+2014-03-01 14:06:01.684 HelloCordova[4594:80b] Resetting plugins due to page load.
+2014-03-01 14:06:01.771 HelloCordova[4594:80b] Finished load of: file:///Users/e/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/A938FD06-CD5F-4DC4-A10B-D5DE9856F0B3/HelloCordova.app/www/index.html
+2014-03-01 14:06:01.810 HelloCordova[4594:80b] Received Event: deviceready
