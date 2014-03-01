@@ -39,14 +39,14 @@ var app = {
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         console.log('Received Event: ' + id);
-        
+        app.initializeMap();
     },
-    initializeMap: function(id) {
+    initializeMap: function() {
         var mapOptions = {
             zoom: 8,
             center: new google.maps.LatLng(-34.397, 150.644)
         };
-        map = new google.maps.Map(document.getElementById('map-canvas'),
+        map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
     }
 };
