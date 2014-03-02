@@ -53,12 +53,32 @@ var app = {
         placeMarker(e.latLng, map);
     });
 
+    loadMapLocs(map);
+
     function placeMarker(position, map) {
       var marker = new google.maps.Marker({
         position: position,
         map: map
       });
       map.panTo(position);
+    }
+  },
+  loadMapLocs: function(map) {
+    $.ajax({
+      type: "GET",
+      url: "http://localhost:3000/events",
+      cache: "false"
+    }).done(function(data) {
+      for (var i = 0, len=data.events.length; i<len; i++) {
+        displayEvent(data.event[i]);
+      }
+    });
+
+    function displayEvent(event) {
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(event.location.lat, event.location.lon),
+        map: map
+      });
     }
   }
 };
