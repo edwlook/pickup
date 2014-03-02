@@ -7,7 +7,10 @@ module.exports = {
 
   getAll: function(req, res, next) {
     Event.find({}, function (err, events) {
-      if (err) return console.log(err);
+      if (err) {
+        console.log(err);
+        return next(new Error('There was a problem getting all the events.'));
+      }
       return res.json({events: events});
     });
   },
