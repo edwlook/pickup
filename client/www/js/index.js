@@ -73,9 +73,9 @@ var app = {
     }
 
     $.ajax({
-      type: "GET",
-      url: "http://intense-brook-8056.herokuapp.com/events",
-      cache: "false"
+      type: 'GET',
+      url: 'http://hidden-escarpment-3579.herokuapp.com/events',
+      cache: 'false'
     }).done(function(data) {
       for (var i = 0, len = data.events.length; i < len; i++) {
         displayEvent(data.events[i]);
