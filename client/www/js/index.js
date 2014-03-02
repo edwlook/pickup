@@ -44,8 +44,21 @@ var app = {
   initializeMap: function() {
     var mapOptions = {
       zoom: 14,
-      center: new google.maps.LatLng(37.871076, -122.2594582)
+      center: new google.maps.LatLng(37.871076, -122.2594582),
+
     };
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    google.maps.event.addListener(map, 'click', function(e) {
+        placeMarker(e.latLng, map);
+    });
+
+    function placeMarker(position, map) {
+      var marker = new google.maps.Marker({
+        position: position,
+        map: map
+      });
+      map.panTo(position);
+    }
   }
 };
