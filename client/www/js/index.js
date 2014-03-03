@@ -59,7 +59,8 @@ var app = {
     function placeMarker(position, map) {
       var marker = new google.maps.Marker({
         position: position,
-        map: map
+        map: map,
+        animation: google.maps.Animation.DROP
       });
       map.panTo(position);
     }
@@ -68,7 +69,8 @@ var app = {
     function displayEvent(event) {
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(event.location.lat, event.location.lon),
-        map: map
+        map: map,
+        animation: google.maps.Animation.DROP
       });
     }
 
