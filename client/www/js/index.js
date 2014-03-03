@@ -51,36 +51,30 @@ var app = {
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
     google.maps.event.addListener(map, 'click', function(e) {
-        placeMarker(e.latLng, map);
+      var position = e.latLng;
+      app.placeMarker(position, map);
+      map.panTo(position);
     });
 
     this.loadMapLocs(map);
-
-    function placeMarker(position, map) {
-      var marker = new google.maps.Marker({
-        position: position,
-        map: map,
-        animation: google.maps.Animation.DROP
-      });
-      map.panTo(position);
-    }
+  },
+  placeMarker: function(position, map) {
+    var marker = new google.maps.Marker({
+      position: position,
+      map: map,
+      animation: google.maps.Animation.DROP
+    });
   },
   loadMapLocs: function(map) {
-    function displayEvent(event) {
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(event.location.lat, event.location.lon),
-        map: map,
-        animation: google.maps.Animation.DROP
-      });
-    }
-
     $.ajax({
       type: 'GET',
       url: 'http://hidden-escarpment-3579.herokuapp.com/events',
       cache: 'false'
     }).done(function(data) {
       for (var i = 0, len = data.events.length; i < len; i++) {
-        displayEvent(data.events[i]);
+        var event = data.events[i];
+        var position = new google.maps.LatLng(event.location.lat, event.location.lon);
+        app.placeMarker(position, map);
       }
     });
   }
