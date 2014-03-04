@@ -53,7 +53,6 @@ var app = {
 
     var el = document.getElementById('map-canvas');
     Hammer(el).on('hold', function() {
-      console.log('hold');
       var list = google.maps.event.addListener(map, 'click', function(e) {
         var position = e.latLng;
         app.placeMarker(position, map);
