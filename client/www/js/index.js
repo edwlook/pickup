@@ -49,9 +49,10 @@ var app = {
       disableDefaultUI: true
     };
 
-    var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     var map_el = document.getElementById('map-canvas');
+
+    // Register hold to add marker listeners
     Hammer(map_el).on('hold', function() {
       var list = google.maps.event.addListener(map, 'click', function(e) {
         var position = e.latLng;
@@ -66,6 +67,17 @@ var app = {
       });
     });
 
+    // Register marker unfocus listeners
+    google.maps.event.addListener(map, 'click', function() {
+      var map_el = $('#map-canvas');
+      map_el.removeClass('small');
+      var center = map.getCenter();
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(center);
+      map.panTo(center);
+    });
+
+    // Load existing markers
     this.loadMapLocs(map);
   },
   placeMarker: function(position, map) {
@@ -73,6 +85,14 @@ var app = {
       position: position,
       map: map,
       animation: google.maps.Animation.DROP
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      var map_el = $('#map-canvas');
+      map_el.addClass('small');
+      var center = map.getCenter();
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(center);
+      map.panTo(position);
     });
   },
   loadMapLocs: function(map) {
