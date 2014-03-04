@@ -51,10 +51,20 @@ var app = {
 
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-    google.maps.event.addListener(map, 'click', function(e) {
-      var position = e.latLng;
-      app.placeMarker(position, map);
-      map.panTo(position);
+    var el = document.getElementById('map-canvas');
+    Hammer(el).on('hold', function() {
+      console.log('hold');
+      var list = google.maps.event.addListener(map, 'click', function(e) {
+        var position = e.latLng;
+        app.placeMarker(position, map);
+        map.panTo(position);
+      });
+      Hammer(el).on('release', function() {
+        setTimeout(function() {
+          google.maps.event.removeListener(list);
+          Hammer(el).off('release');
+        }, 1);
+      });
     });
 
     this.loadMapLocs(map);
