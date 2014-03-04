@@ -51,17 +51,17 @@ var app = {
 
     var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-    var el = document.getElementById('map-canvas');
-    Hammer(el).on('hold', function() {
+    var map_el = document.getElementById('map-canvas');
+    Hammer(map_el).on('hold', function() {
       var list = google.maps.event.addListener(map, 'click', function(e) {
         var position = e.latLng;
         app.placeMarker(position, map);
         map.panTo(position);
       });
-      Hammer(el).on('release', function() {
+      Hammer(map_el).on('release', function() {
         setTimeout(function() {
           google.maps.event.removeListener(list);
-          Hammer(el).off('release');
+          Hammer(map_el).off('release');
         }, 1);
       });
     });
