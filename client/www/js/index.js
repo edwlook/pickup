@@ -84,8 +84,14 @@ var app = {
     var marker = new google.maps.Marker({
       position: position,
       map: map,
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
+      title: 'test'
     });
+
+    var contentString = '<p>Hello</p>';
+
+    // create a new infoWindow to display marker details
+    app.openInfoWindow(contentString, map, marker);
     // Listen to when a marker is clicked
     google.maps.event.addListener(marker, 'click', function() {
       var map_el = $('#map-canvas');
@@ -95,6 +101,14 @@ var app = {
       // map.setCenter(center);
       map.panTo(position);
     });
+  },
+  openInfoWindow: function(htmlContent, map, marker){
+    // instantiate new infoWindow using provided content
+    var infoWindow = new google.maps.InfoWindow({
+      content: htmlContent
+    });
+    // popup the info window on the screen
+    infoWindow.open(map, marker);
   },
   loadMapLocs: function(map) {
     $.ajax({
