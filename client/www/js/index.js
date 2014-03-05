@@ -88,7 +88,13 @@ var app = {
       title: 'test'
     });
 
-    var contentString = '<p>Hello</p>';
+    var contentString = '<form role="form">'+
+      '<div class="form-group">' +
+      '<label for="eventName">Sport</label>' +
+      '<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">' +
+      '</div>' +
+      '</form>' +
+      '<button class="btn btn-default">Save</button>';
 
     // create a new infoWindow to display marker details
     app.openInfoWindow(contentString, map, marker);
