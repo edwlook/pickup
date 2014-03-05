@@ -68,14 +68,14 @@ var app = {
     });
 
     // Register marker unfocus listeners
-    google.maps.event.addListener(map, 'click', function() {
-      var map_el = $('#map-canvas');
-      map_el.removeClass('small');
-      var center = map.getCenter();
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(center);
-      map.panTo(center);
-    });
+    // google.maps.event.addListener(map, 'click', function() {
+    //   var map_el = $('#map-canvas');
+    //   map_el.removeClass('small');
+    //   var center = map.getCenter();
+    //   google.maps.event.trigger(map, 'resize');
+    //   map.setCenter(center);
+    //   map.panTo(center);
+    // });
 
     // Load existing markers
     this.loadMapLocs(map);
@@ -86,12 +86,13 @@ var app = {
       map: map,
       animation: google.maps.Animation.DROP
     });
+    // Listen to when a marker is clicked
     google.maps.event.addListener(marker, 'click', function() {
       var map_el = $('#map-canvas');
-      map_el.addClass('small');
-      var center = map.getCenter();
-      google.maps.event.trigger(map, 'resize');
-      map.setCenter(center);
+      // map_el.addClass('small');
+      // var center = map.getCenter();
+      // google.maps.event.trigger(map, 'resize');
+      // map.setCenter(center);
       map.panTo(position);
     });
   },
