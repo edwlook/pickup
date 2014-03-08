@@ -91,7 +91,7 @@ var app = {
     var contentString = '<form role="form">'+
       '<div class="form-group">' +
       '<label for="eventName">Sport</label>' +
-      '<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">' +
+      '<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Activity">' +
       '</div>' +
       '</form>' +
       '<button class="btn btn-default">Save</button>';
