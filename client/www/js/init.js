@@ -40,7 +40,8 @@ var app = {
   receivedEvent: function(id) {
     var parentElement = document.getElementById(id);
     console.log('Received Event: ' + id);
-    app.initializeMap();
+    
+    //app.initializeMap();
   },
   initializeMap: function() {
     var mapOptions = {
@@ -130,3 +131,5 @@ var app = {
     });
   }
 };
+
+app.initialize();
