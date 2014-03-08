@@ -1,14 +1,14 @@
 define([
-  'backbone'
-], function(Backbone) {
+  'backbone',
+  'views/app'
+], function(Backbone, AppView) {
 
   return Backbone.Router.extend({
     routes: {
-      "/": 'test'
+      "": 'index'
     },
-
-    test: function() {
-      console.log('test');
+    index: function() {
+      new AppView();
     }
   });
 

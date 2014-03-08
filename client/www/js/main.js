@@ -4,6 +4,7 @@
 require.config({
     'baseUrl': 'js/',
     paths: {
+      'text': 'util/text',
       'jquery': 'util/jquery.min',
       'hammer': 'util/hammer.min',
       'backbone': 'util/backbone.min',
@@ -15,8 +16,8 @@ require.config({
       'models': 'models',
       'collections': 'collections',
       'routers': 'routers',
-      'templates': 'templates',
-      'views': 'views'
+      'views': 'views',
+      'templates': '../templates'
     },
     shim: {
       'underscore': { exports: '_' },
