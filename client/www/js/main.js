@@ -35,7 +35,6 @@ require.config({
 
 // beginning of application logic
 require(['jquery', 'fastclick', 'app'], function($, FastClick, App) {
-
   $(function() {
     $.support.cors = true;
     FastClick.attach(document.body);

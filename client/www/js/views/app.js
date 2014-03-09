@@ -5,16 +5,14 @@ define([
 ], function(Backbone, MapView, AppTemplate){
 	
 	return Backbone.View.extend({
-		tagname: 'div',
+		template: _.template(AppTemplate),
 		el: 'body',
-		id: 'app-view',
-		template: _.template(''),
 		initialize: function() {
-			new MapView();
 			this.render();
 		},
 		render: function() {
 			this.$el.html(this.template());
+			new MapView();
 			return this;
 		}
 
