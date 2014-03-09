@@ -14,8 +14,7 @@ define([
 			this.$el.html(this.template());
 			new MapView();
 			return this;
-		}
-
+		},
 	});
 
 });

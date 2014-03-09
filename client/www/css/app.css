@@ -7,11 +7,11 @@ body {
     height: 100%;
 }
 
-#map-canvas {
+#map-view {
     width: 100%;
     height: 100%;
 }
 
-#map-canvas.small {
+#map-view.small {
   height: 40%;
 }
