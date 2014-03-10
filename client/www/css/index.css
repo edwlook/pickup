@@ -3,15 +3,11 @@ html {
 }
 
 body {
-    margin-top: 20px;
+    margin-top: 20px !important;
     height: 100%;
 }
 
 #map-canvas {
     width: 100%;
     height: 100%;
-}
-
-#map-canvas.small {
-  height: 40%;
 }

@@ -61,7 +61,7 @@ var app = {
     Hammer(map_el).on('hold', function() {
       var list = google.maps.event.addListener(map, 'click', function(e) {
         var position = e.latLng;
-        app.placeMarker(position, map);
+        app.placeNewMarker(position, map);
         map.panTo(position);
       });
       Hammer(map_el).on('release', function() {
@@ -84,6 +84,18 @@ var app = {
 
     // Load existing markers
     this.loadMapLocs(map);
+  },
+  placeNewMarker: function(position, map) {
+    var marker = new google.maps.Marker({
+      position: position,
+      map: map,
+      animation: google.maps.Animation.DROP,
+      title: 'test'
+    });
+
+    map.panTo(position);
+    app.openNewInfoWindow(map, marker);
+
   },
   placeOldMarker: function(position, map, activity) {
     var marker = new google.maps.Marker({
@@ -114,8 +126,23 @@ var app = {
       app.openOldInfoWindow(activity, map, marker);
     });
   },
-  openNewInfoWindow: function(htmlContent, map, marker){
-    // instantiate new infoWindow using provided content
+  openNewInfoWindow: function(map, marker){
+    var htmlContent = '<form role="form">'+
+      '<div class="form-group">' +
+      '<label>Activity</label>' +
+      '<input type="text" class="form-control" id="activity-name" placeholder="Enter Activity">' +
+      '</div>' +
+      '<div class="form-group">' +
+      '<label>Start Time</label>' +
+      '<input type="text" class="form-control" id="activity-start" placeholder="MM:HH">' +
+      '</div>' +
+      '<div class="form-group">' +
+      '<label>End Time</label>' +
+      '<input type="text" class="form-control" id="activity-end" placeholder="MM:HH">' +
+      '</div>' +
+      '</form>' +
+      '<button class="btn btn-default">Post</button>';
+
     var infoWindow = new google.maps.InfoWindow({
       content: htmlContent
     });
