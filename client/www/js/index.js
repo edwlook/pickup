@@ -17,6 +17,11 @@
  * under the License.
  */
 
+String.prototype.titleCase = function () {
+  return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() +
+    txt.substr(1).toLowerCase();});
+};
+
 var app = {
   // Application Constructor
   initialize: function() {
@@ -80,7 +85,7 @@ var app = {
     // Load existing markers
     this.loadMapLocs(map);
   },
-  placeMarker: function(position, map, activity) {
+  placeOldMarker: function(position, map, activity) {
     var marker = new google.maps.Marker({
       position: position,
       map: map,
@@ -88,16 +93,16 @@ var app = {
       title: 'test'
     });
 
-    var contentString = '<form role="form">'+
-      '<div class="form-group">' +
-      '<label>Acitivity</label>' +
-      '<input type="text" class="form-control" id="activity-name" placeholder="Enter Activity">' +
-      '</div>' +
-      '</form>' +
-      '<button class="btn btn-default">Save</button>';
+    // var contentString = '<form role="form">'+
+    //   '<div class="form-group">' +
+    //   '<label>Activity</label>' +
+    //   '<input type="text" class="form-control" id="activity-name" placeholder="Enter Activity">' +
+    //   '</div>' +
+    //   '</form>' +
+    //   '<button class="btn btn-default">Save</button>';
 
     // create a new infoWindow to display marker details
-    app.openNewInfoWindow(contentString, map, marker);
+    // app.openNewInfoWindow(contentString, map, marker);
     // Listen to when a marker is clicked
     google.maps.event.addListener(marker, 'click', function() {
       var map_el = $('#map-canvas');
@@ -106,7 +111,7 @@ var app = {
       // google.maps.event.trigger(map, 'resize');
       // map.setCenter(center);
       map.panTo(position);
-      app.openOldInfoWindow(activity);
+      app.openOldInfoWindow(activity, map, marker);
     });
   },
   openNewInfoWindow: function(htmlContent, map, marker){
@@ -117,8 +122,16 @@ var app = {
     // popup the info window on the screen
     infoWindow.open(map, marker);
   },
-  openOldInfoWindow: function(activity) {
-    console.log(activity);
+  openOldInfoWindow: function(activity, map, marker) {
+    var htmlContent = '<h1>' + activity.name.titleCase() + '</h1>' +
+      '<h2>Starts: ' + activity.startTime + '</h2>' +
+      '<h2>Ends: ' + activity.endTime + '</h2>';
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: htmlContent
+    });
+
+    infoWindow.open(map, marker);
   },
   loadMapLocs: function(map) {
     $.ajax({
@@ -130,7 +143,7 @@ var app = {
       for (var i = 0, len = data.events.length; i < len; i++) {
         var activity = data.events[i];
         var position = new google.maps.LatLng(activity.location.lat, activity.location.lon);
-        app.placeMarker(position, map, activity);
+        app.placeOldMarker(position, map, activity);
       }
     });
   }
