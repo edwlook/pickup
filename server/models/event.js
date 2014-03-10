@@ -9,6 +9,7 @@ var LocalUserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  name: String,
   startTime: String,
   endTime: String,
   location: {

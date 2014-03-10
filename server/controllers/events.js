@@ -33,6 +33,7 @@ module.exports = {
   create: function(req, res, next) {
     var data = req.body;
     var newEvent = new Event({
+      name: data.name,
       startTime: data.startTime,
       endTime: data.endTime,
       location: {
